@@ -1,0 +1,29 @@
+from appwrite.client import Client
+from appwrite.services.account import Account
+from appwrite.services.projects import Projects
+from appwrite.services.teams import Teams
+
+client = Client()
+client.set_endpoint('YOUR_APPWRITE_ENDPOINT') \
+      .set_project('YOUR_PROJECT_ID') \
+      .set_key('YOUR_API_KEY')
+
+# Account creation
+def create_account(email, password):
+    account = Account(client)
+    return account.create(email=email, password=password)
+
+# Account session creation (email login)
+def create_account_session(email, password):
+    account = Account(client)
+    return account.create_session(email=email, password=password)
+
+# Project creation
+def create_project(name):
+    projects = Projects(client)
+    return projects.create(name=name)
+
+# Team creation
+def create_team(name):
+    teams = Teams(client)
+    return teams.create(name=name)
